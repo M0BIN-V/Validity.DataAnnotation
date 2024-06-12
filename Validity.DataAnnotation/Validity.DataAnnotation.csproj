@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <Title>Validity.DataAnnotation</Title>
     <Description>Validate nested objects with data annotation attribute automatically</Description>
+    <RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
