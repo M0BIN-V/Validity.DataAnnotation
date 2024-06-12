@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Validity.DataAnnotation</Title>
+    <Description>Validate nested objects with data annotation attribute automatically</Description>
+  </PropertyGroup>
+
+</Project>
