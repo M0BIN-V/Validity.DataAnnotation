@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validity.DataAnnotation", "Validity.DataAnnotation\Validity.DataAnnotation.csproj", "{B2AF24FE-2412-4121-A4CB-3C1AEAAD6D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validity.DataAnnotation", "Validity.DataAnnotation\Validity.DataAnnotation.csproj", "{B2AF24FE-2412-4121-A4CB-3C1AEAAD6D65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{1FAF8B5A-8F3C-420B-90C0-755A3F24D602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B2AF24FE-2412-4121-A4CB-3C1AEAAD6D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2AF24FE-2412-4121-A4CB-3C1AEAAD6D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2AF24FE-2412-4121-A4CB-3C1AEAAD6D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAF8B5A-8F3C-420B-90C0-755A3F24D602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAF8B5A-8F3C-420B-90C0-755A3F24D602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAF8B5A-8F3C-420B-90C0-755A3F24D602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAF8B5A-8F3C-420B-90C0-755A3F24D602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
