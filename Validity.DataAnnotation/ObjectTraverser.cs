@@ -5,47 +5,32 @@ namespace Validity.DataAnnotation;
 
 internal static class ObjectTraverser
 {
-    public static HashSet<object> GetInnerObjects(object? obj)
+    public static void TraverseObjectRecursive(object? obj, string name, Action<Field> action)
     {
-        HashSet<object> objects = [];
-
-        TraverseObjectRecursive(obj, objects);
-
-        return objects;
-    }
-
-    private static void TraverseObjectRecursive(object? obj, HashSet<object> objects)
-    {
-        if (obj == null || objects.Contains(obj)) return;
+        if (obj == null) return;
 
         var type = obj.GetType();
 
         if (type.IsPrimitive || obj is string) return;
 
-        objects.Add(obj);
+        action(new(name, obj));
 
         if (obj is IEnumerable enumerable)
         {
+            var enumerableIndex = 0;
             foreach (var item in enumerable)
             {
-                TraverseObjectRecursive(item, objects);
+                TraverseObjectRecursive(item, name + $"[{enumerableIndex++}]", action);
             }
         }
         else
         {
-            foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (property.CanRead)
-                {
-                    var value = property.GetValue(obj);
-                    TraverseObjectRecursive(value, objects);
-                }
-            }
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.Instance))
+            foreach (var property in properties)
             {
-                var value = field.GetValue(obj);
-                TraverseObjectRecursive(value, objects);
+                var value = property.GetValue(obj);
+                TraverseObjectRecursive(value, name + "." + property.Name, action);
             }
         }
     }
