@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+using static Validity.DataAnnotation.ObjectTraverser;
 
 namespace Validity.DataAnnotation;
 
@@ -6,21 +9,32 @@ public static class NestedObjectValidator
 {
     public static List<FieldValidationResult> Validate(object obj, string name)
     {
-        var fieldValidationResults = new List<FieldValidationResult>();
+        List<FieldValidationResult> errors = [];
 
-        ObjectTraverser.TraverseObjectRecursive(obj, name, field =>
+        ActionOnInnerProperties(obj, name, (property, value, fullName) =>
         {
-            var results = new List<ValidationResult>();
+            var validationAttributes = property.GetCustomAttributes<ValidationAttribute>();
 
-            Validator.TryValidateObject(field.Value, new ValidationContext(field.Value), results, true);
+            if (value is null) return;
 
-            foreach (var result in results)
+            var context = new ValidationContext(value);
+
+            foreach (var attribute in validationAttributes)
             {
-                fieldValidationResults
-                .Add(new(field.Name + "." + result.MemberNames.First(), result.ErrorMessage ?? ""));
+                if (!attribute.IsValid(value))
+                {
+                    var displayName = property.GetCustomAttribute<DisplayAttribute>()?.Name ??
+                    property.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ??
+                    property.Name;
+
+                    var message = attribute.FormatErrorMessage(displayName);
+
+                    errors.Add(new(fullName, message));
+                }
             }
         });
 
-        return fieldValidationResults;
+        return errors;
     }
+
 }
