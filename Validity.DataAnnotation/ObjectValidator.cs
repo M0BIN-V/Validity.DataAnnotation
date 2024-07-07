@@ -8,7 +8,7 @@ using static Validity.DataAnnotation.ObjectTraverser;
 
 namespace Validity.DataAnnotation;
 
-public class ObjectValidator : IObjectValidator
+internal class ObjectValidator : IObjectValidator
 {
     readonly IOptions<ObjectValidatorOptions> _options;
 

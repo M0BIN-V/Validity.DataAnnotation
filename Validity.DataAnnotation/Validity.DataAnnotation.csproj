@@ -8,7 +8,7 @@
     <Description>Validate nested objects with data annotation attribute automatically</Description>
     <RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
     <PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
