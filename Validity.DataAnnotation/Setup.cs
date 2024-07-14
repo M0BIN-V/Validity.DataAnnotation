@@ -16,7 +16,6 @@ public static class Setup
     public static IServiceCollection AddObjectValidator(this IServiceCollection services, Action<ObjectValidatorOptions> setupAction)
     {
         services.AddSingleton<IObjectValidator, ObjectValidator>();
-
         services.Configure(setupAction);
 
         return services;

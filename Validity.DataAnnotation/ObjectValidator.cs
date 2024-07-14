@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using Validity.DataAnnotation.Attributes;
 using Validity.DataAnnotation.Options;
 using static Validity.DataAnnotation.ObjectTraverser;
 
