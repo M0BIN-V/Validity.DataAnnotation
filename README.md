@@ -1,11 +1,10 @@
-## Getting started
 ### 1. Install package
   ```bash
   dotnet add package AutoValidator.DataAnnotation
   ```
 
 
-### 2. Create your class
+### 2. Create Class
  ```csharp
  public class MyClass
  {
@@ -21,23 +20,38 @@
  }
  ```
 
-  ### 3. Validate your object
-   ```csharp
-   var myObject = new MyClass
-   {
-      PhoneNumber = "invalid phone number for test",
-      Nested = new NestedClass { Title = "invalid title for test" }
-   };
+### 3. Add validator to service container
+in Program.cs
+```csharp
+ builder.Services.AddObjectValidator();
+```
 
-   var validationResult = NestedObjectValidator.Validate(myObject);
+### 4. Inject validator to yout controller
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class MyController : ControllerBase
+{
+    readonly IObjectValidator _validator;
 
-  // Show validation error messages
-  foreach (var result in validationResult)
-  {
-      Console.WriteLine(result.ErrorMessage);
-  }
+    public MyController(IObjectValidator validator)
+    {
+        _validator = validator;
+    }
+}
+```
 
-  //Result:
-  //The PhoneNumber field is not a valid phone number.
-  //The field Title must be a string or array type with a maximum length of '5'.
-   ```
+### 5. Use validator
+```csharp
+[HttpPost]
+public IActionResult AddUser(MyClass myClass)
+{
+    var validationErrors = _validator.Validate(myClass);
+
+    if (validationErrors.Count != 0)
+    {
+        //DO SOMETHING
+    }
+}
+```
+
