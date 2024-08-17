@@ -3,7 +3,7 @@ using Validity.DataAnnotation.Options;
 
 namespace Validity.DataAnnotation;
 
-public static class Setup
+public static class DepenencyInjection
 {
     public static IServiceCollection AddObjectValidator(this IServiceCollection services)
     {
