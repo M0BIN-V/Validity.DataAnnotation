@@ -1,6 +1,6 @@
 ### 1. Install package
   ```bash
-  dotnet add package AutoValidator.DataAnnotation
+  dotnet add package Validity.DataAnnotation
   ```
 
 
