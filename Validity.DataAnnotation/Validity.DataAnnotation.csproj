@@ -1,26 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Title>Validity.DataAnnotation</Title>
-    <Description>Validate nested objects with data annotation attribute automatically</Description>
-    <RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
-    <Version>2.1.12</Version>
-    <PackageIcon>Validity_icon.png</PackageIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>Validity.DataAnnotation</Title>
+		<Description>Validate nested objects with data annotation attributes automatically</Description>
+		<RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
+		<Version>2.1.2</Version>
+		<PackageIcon>Validity_icon.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Validity_icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
+		<None Include="ValidityIcon.png" Pack="true"/>
+	</ItemGroup>
 </Project>
