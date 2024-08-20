@@ -9,7 +9,7 @@
 		<RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
 		<Version>2.1.2</Version>
-		<PackageIcon>Validity_icon.png</PackageIcon>
+		<PackageIcon>ValidityIcon.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
