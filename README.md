@@ -1,11 +1,90 @@
-## Getting started
+[![NuGet Package](https://img.shields.io/nuget/v/Validity.DataAnnotation)](https://www.nuget.org/packages/Validity.DataAnnotation/)
+
+
+### Table of content
+- [Installing](#Installation)
+- [Usage](#Usage)
+- [Result Message](#Result-Message)
+- [Result Errors](#Result-Errors)
+
+### Installation
+  ```bash
+  dotnet add package Resulver
+  ```
+
+### Usage
+   ```csharp
+    public Result<int> Sum(int a, int b)
+    {
+        var sum = a + b;
+
+        return new Result<int>(sum);
+    }
+
+    public void Writer()
+    {
+        var result = Sum(3, 5);
+
+        Console.WriteLine(result.Content);
+    } 
+   ```
+
+### Result Message
+```csharp
+public Result<User> AddUser(User user)
+{
+    // implementation
+
+    return new Result<User>(user, message: "User Created");
+}
+
+public void Writer()
+{
+    var user = new User();
+
+    var result = AddUser(user);
+
+    Console.WriteLine(result.Message);
+}
+```
+### Result Errors
+```csharp
+public class UserNotFoundError() : ResultError(message: "User not found");
+public class UserIdIsNotValidError() : ResultError(message:   "User ID is not valid");
+
+public Result RemoveUser(int userId)
+{
+    //Implementation
+
+
+
+    return new UserNotFoundError();
+
+    //or for multiple errors
+    return new Result(new UserNotFoundError(), new UserIdIsNotValidError());
+}
+
+public void Writer()
+{
+    var result = RemoveUser(1);
+
+    if (result.IsFailure)
+    {
+        foreach (var error in result.Errors)
+        {
+            Console.WriteLine(error.Message);
+        }
+    }
+}
+```
+
 ### 1. Install package
   ```bash
   dotnet add package AutoValidator.DataAnnotation
   ```
 
 
-### 2. Create your class
+### 2. Create Class
  ```csharp
  public class MyClass
  {
@@ -21,23 +100,38 @@
  }
  ```
 
-  ### 3. Validate your object
-   ```csharp
-   var myObject = new MyClass
-   {
-      PhoneNumber = "invalid phone number for test",
-      Nested = new NestedClass { Title = "invalid title for test" }
-   };
+### 3. Add validator to service container
+in Program.cs
+```csharp
+ builder.Services.AddObjectValidator();
+```
 
-   var validationResult = NestedObjectValidator.Validate(myObject);
+### 4. Inject validator to yout controller
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class MyController : ControllerBase
+{
+    readonly IObjectValidator _validator;
 
-  // Show validation error messages
-  foreach (var result in validationResult)
-  {
-      Console.WriteLine(result.ErrorMessage);
-  }
+    public MyController(IObjectValidator validator)
+    {
+        _validator = validator;
+    }
+}
+```
 
-  //Result:
-  //The PhoneNumber field is not a valid phone number.
-  //The field Title must be a string or array type with a maximum length of '5'.
-   ```
+### 5. Use validator
+```csharp
+[HttpPost]
+public IActionResult AddUser(MyClass myClass)
+{
+    var validationErrors = _validator.Validate(myClass);
+
+    if (validationErrors.Count != 0)
+    {
+        //DO SOMETHING
+    }
+}
+```
+
