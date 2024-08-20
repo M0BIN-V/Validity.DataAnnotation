@@ -8,12 +8,22 @@
 		<Description>Validate nested objects with data annotation attributes automatically</Description>
 		<RepositoryUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/M0BIN-V/Validity.DataAnnotation</PackageProjectUrl>
-		<Version>2.1.2</Version>
+		<Version>2.1.3</Version>
 		<PackageIcon>ValidityIcon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENCE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
-		<None Include="ValidityIcon.png" Pack="true" PackagePath =""/>
+		<None Include="..\LICENCE">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="ValidityIcon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 </Project>
