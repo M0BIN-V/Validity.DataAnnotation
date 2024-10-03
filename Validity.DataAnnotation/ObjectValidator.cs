@@ -22,13 +22,7 @@ public class ObjectValidator : IObjectValidator
 
         ActionOnInnerProperties(obj, name, (property, value, fullName) =>
         {
-            var validationAttributes = property.GetCustomAttributes<ValidationAttribute>();
-
-            if (value is null) return;
-
-            var context = new ValidationContext(value);
-
-            foreach (var attribute in validationAttributes)
+            foreach (var attribute in property.GetCustomAttributes<ValidationAttribute>())
             {
                 if (!attribute.IsValid(value))
                 {
